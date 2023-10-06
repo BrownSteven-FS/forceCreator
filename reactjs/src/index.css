@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans text-base font-normal antialiased bg-stone-900 text-stone-50;
+  }
+}
+@layer components {
+}
+
+@layer utilities {
+}

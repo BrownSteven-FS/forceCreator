@@ -1,0 +1,41 @@
+GET http://localhost:8000/
+
+###
+
+GET http://localhost:8000/api_v1/units
+
+###
+
+GET http://localhost:8000/api_v1/units/6520109ac53905e2d0075919
+
+###
+
+POST http://localhost:8000/api_v1/units
+Content-Type: application/json
+
+{
+    "type": "U",
+    "name": "173rd IBCT(A)34",
+    "parent": "TOP",
+    "uic": "17300124",
+    "echelon": "BDE",
+    "template": "MNT BN",
+    "symbol": "SNGPUCFT---FXCG"
+}
+
+###
+PATCH http://localhost:8000/api_v1/units/6520109ac53905e2d0075919
+Content-Type: application/json
+
+{
+    "type": "U",
+    "name": "173rd IBCT(A)",
+    "parent": "TOP",
+    "uic": "1730012",
+    "echelon": "BDE",
+    "template": "MNT BN",
+    "symbol": "SNGPUCFT---FXCG"
+}
+###
+
+DELETE  http://localhost:8000/api_v1/units/65200994adb1ae9e6e8ad862

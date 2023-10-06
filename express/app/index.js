@@ -1,16 +1,19 @@
 const express = require("express");
 const app = express();
-// const path = require("path");
+const path = require("path");
 const middleware = require("./middleware");
 const unitRouter = require("./api/routes/unitRoutes");
 
 middleware(app);
 
-app.get("/", (req, res) => {
-  res.status(200).json({ message: "Service is up!" });
-});
-
 app.use("/api_v1/units", unitRouter);
+
+// Add our react build
+app.use(express.static(path.join(__dirname, "../../reactjs/dist")));
+
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../../reactjs/dist", "index.html"));
+});
 
 // add middleware to handle errors and bad url paths
 app.use((req, res, next) => {

@@ -42,7 +42,11 @@ const HomePage = () => {
         <div className="listing-container">
           {units &&
             units.map((unit, i) => (
-              <UnitListing unit={unit} key={`listing-${i}`} />
+              <UnitListing
+                unit={unit}
+                setUnits={setUnits}
+                key={`listing-${i}`}
+              />
             ))}
         </div>
       </section>

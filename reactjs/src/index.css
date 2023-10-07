@@ -40,10 +40,10 @@
 
 @layer components {
   .listing-container {
-    @apply grid grid-cols-1 lg:grid-cols-2 justify-between gap-8;
+    @apply grid grid-cols-1 lg:grid-cols-2 justify-between gap-8 relative;
   }
   .listing {
-    @apply grid grid-cols-12 justify-center gap-8 mb-8 w-full bg-stone-800  py-8 px-12 rounded-sm shadow-md;
+    @apply grid grid-cols-12 justify-center gap-8 mb-8 w-full bg-stone-800  py-8 px-12 rounded-sm shadow-md relative;
   }
   .listing figure {
     @apply flex flex-col w-full col-span-5;

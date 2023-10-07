@@ -110,7 +110,7 @@ const createUnit = async (req, res) => {
     res.status(200).json({ unitObject, message });
   } catch (error) {
     console.error("Failed to create unit:", error);
-    res.status(500).json({ message: "Failed to create unit", error: error });
+    res.status(500).json({ message: "Failed to create unit", error });
   }
 };
 
@@ -118,7 +118,6 @@ const deleteUnit = async (req, res) => {
   {
     try {
       const { id } = req.params;
-      console.log(id);
       // Check if the unit already exists
       const existingUnit = await Unit.findOne({ _id: id });
       if (!existingUnit) {
@@ -127,7 +126,12 @@ const deleteUnit = async (req, res) => {
 
       await Unit.deleteOne({ _id: id });
 
-      res.status(200).json({ message: "Unit deleted successfully" });
+      const units = await Unit.find();
+      const unitObjects = units.map((unit) => unit.toObject());
+
+      res
+        .status(200)
+        .json({ message: "Unit deleted successfully", units: unitObjects });
     } catch (error) {
       console.error("Failed to delete unit:", error);
       res.status(500).json({ message: "Failed to delete unit" });

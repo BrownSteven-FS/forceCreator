@@ -1,7 +1,25 @@
 import { Unit } from "../types/types";
 import ms from "milsymbol";
+import { FaPencil, FaTrash } from "react-icons/fa6";
+import { API_BASE } from "../lib/helpers";
+import { Link } from "react-router-dom";
 
-const UnitListing = ({ unit }: { unit: Unit }) => {
+const UnitListing = ({ unit, setUnits }: { unit: Unit; setUnits: any }) => {
+  const handleDelete = async () => {
+    const response = await fetch(`${API_BASE}/units/${unit.id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.ok) {
+      const result = await response.json();
+      setUnits(result.units);
+    } else {
+      console.error("Failed to delete unit.");
+    }
+  };
+
   return (
     <article className="listing">
       <figure>
@@ -23,6 +41,14 @@ const UnitListing = ({ unit }: { unit: Unit }) => {
           {unit.unit_class && <li>Unit Class: {unit.unit_class}</li>}
           {unit.template && <li>Unit Template: {unit.template}</li>}
         </ul>
+      </div>
+      <div className="absolute top-4 right-4 flex gap-4">
+        <Link to={`/edit/${unit.id}`}>
+          <FaPencil />
+        </Link>
+        <button onClick={handleDelete}>
+          <FaTrash />
+        </button>
       </div>
     </article>
   );

@@ -18,11 +18,14 @@
   h2 {
     @apply font-bold text-xl py-4;
   }
-  a {
+  header a {
     @apply text-green-500 px-4;
   }
-  a:hover {
+  header a:hover {
     @apply text-green-700;
+  }
+  section {
+    @apply bg-stone-800 py-8 px-12 rounded-sm shadow-md relative mb-8;
   }
   form {
     @apply max-w-7xl mx-auto bg-stone-800 py-8 shadow-md px-12 rounded-sm;
@@ -40,10 +43,10 @@
 
 @layer components {
   .listing-container {
-    @apply grid grid-cols-1 lg:grid-cols-2 justify-between gap-8;
+    @apply grid grid-cols-1 lg:grid-cols-2 justify-between gap-8 relative;
   }
   .listing {
-    @apply grid grid-cols-12 justify-center gap-8 mb-8 w-full bg-stone-800  py-8 px-12 rounded-sm shadow-md;
+    @apply grid grid-cols-12 justify-center gap-8 mb-8 w-full bg-stone-800 py-8 px-12 rounded-sm shadow-md relative;
   }
   .listing figure {
     @apply flex flex-col w-full col-span-5;
@@ -60,6 +63,10 @@
   .listing div h3 {
     @apply font-black uppercase pb-2;
   }
+  .listing a,
+  .listing button {
+    @apply hover:opacity-70 hover:text-green-100;
+  }
   .row {
     @apply w-full grid gap-4 grid-cols-1 md:grid-cols-12;
   }
@@ -75,6 +82,28 @@
   }
   .row label span {
     @apply text-red-600;
+  }
+
+  .dialog-panel {
+    @apply relative transform overflow-hidden rounded-lg bg-stone-700 px-4 pt-5 pb-4 shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6;
+  }
+  .dialog-header {
+    @apply mx-auto flex h-12 w-12 items-center justify-center rounded-full;
+  }
+  .dialog-content {
+    @apply text-center text-stone-50;
+  }
+  .dialog-content p {
+    @apply text-sm text-stone-100;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 }
 

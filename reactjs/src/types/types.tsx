@@ -23,6 +23,8 @@ export interface Unit {
   unit_class: string;
   template: string;
   symbol: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export const defaultUnitState: Partial<Unit> = {

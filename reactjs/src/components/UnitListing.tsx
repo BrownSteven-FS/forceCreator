@@ -1,7 +1,7 @@
 import { Unit } from "../types/types";
 import ms from "milsymbol";
 import { FaPencil, FaTrash } from "react-icons/fa6";
-import { API_BASE } from "../lib/helpers";
+import { API_BASE, formatDate } from "../lib/helpers";
 import { Link } from "react-router-dom";
 
 const UnitListing = ({ unit, setUnits }: { unit: Unit; setUnits: any }) => {
@@ -33,13 +33,15 @@ const UnitListing = ({ unit, setUnits }: { unit: Unit; setUnits: any }) => {
       </figure>
       <div>
         <h3>{unit.name}</h3>
-        <ul>
+        <ul className="text-sm">
           {unit.type && <li>Unit Type: {unit.type}</li>}
           {unit.parent && <li>Unit Parent: {unit.parent}</li>}
           {unit.uic && <li>Unit UIC: {unit.uic}</li>}
           {unit.echelon && <li>Unit Echelon: {unit.echelon}</li>}
           {unit.unit_class && <li>Unit Class: {unit.unit_class}</li>}
           {unit.template && <li>Unit Template: {unit.template}</li>}
+          {unit.createdAt && <li>Created: {formatDate(unit.createdAt)}</li>}
+          {unit.updatedAt && <li>Updated: {formatDate(unit.updatedAt)}</li>}
         </ul>
       </div>
       <div className="absolute top-4 right-4 flex gap-4">

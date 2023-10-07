@@ -47,6 +47,7 @@ const unitSchema = new mongoose.Schema(
         };
       },
     },
+    timestamps: true, // This automatically adds a createdAt and updatedAt field
   }
 );
 

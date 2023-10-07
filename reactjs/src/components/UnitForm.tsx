@@ -44,7 +44,6 @@ const UnitForm = ({ unitState = defaultUnitState }) => {
     if (response.ok) {
       showModal(<SuccessModal message={result.message} />);
       navigate("/");
-      console.log(result);
     } else {
       console.error("Failed to create unit.", result);
       showModal(<ErrorModal message={result.message} />);

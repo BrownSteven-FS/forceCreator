@@ -21,7 +21,6 @@ const EditUnitPage = () => {
         setIsLoading(true);
         const response = await fetch(`${API_BASE}/units/${id}`);
         const data = await response.json();
-        console.log(data);
         setUnit(data.unit);
         setError(null);
       } catch (error) {

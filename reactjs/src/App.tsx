@@ -4,6 +4,7 @@ import NotFoundPage from "./pages/NotFound";
 import CreateUnitPage from "./pages/CreateUnit";
 import Header from "./components/Header";
 import EditUnitPage from "./pages/EditUnit";
+import ViewUnitPage from "./pages/ViewUnit";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/create" element={<CreateUnitPage />} />
         <Route path="/edit/:id" element={<EditUnitPage />} />
+        <Route path="/view/:id" element={<ViewUnitPage />} />
         <Route path="/" element={<HomePage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

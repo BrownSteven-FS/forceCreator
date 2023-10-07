@@ -97,6 +97,10 @@
     @apply text-sm text-stone-100;
   }
 
+  .link {
+    @apply text-green-500 hover:text-green-700;
+  }
+
   @keyframes spin {
     0% {
       transform: rotate(0deg);

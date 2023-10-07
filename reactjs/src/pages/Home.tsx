@@ -4,6 +4,7 @@ import UnitListing from "../components/UnitListing";
 import { API_BASE } from "../lib/helpers";
 import LoadingComponent from "../components/Loading";
 import ErrorComponent from "../components/Error";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   const [units, setUnits] = useState<Unit[] | null>(null);
@@ -47,6 +48,15 @@ const HomePage = () => {
           units.map((unit, i) => (
             <UnitListing unit={unit} setUnits={setUnits} key={`listing-${i}`} />
           ))}
+        {units?.length === 0 && !error && (
+          <p>
+            No units have been created. That's no fun! Try creating one{" "}
+            <Link className="link" to="/create">
+              here
+            </Link>
+            .
+          </p>
+        )}
       </div>
       {isLoading && <LoadingComponent />}
       {error && <ErrorComponent message={error} />}

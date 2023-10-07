@@ -110,7 +110,7 @@ const createUnit = async (req, res) => {
     res.status(200).json({ unitObject, message });
   } catch (error) {
     console.error("Failed to create unit:", error);
-    res.status(500).json({ message: "Failed to create unit" });
+    res.status(500).json({ message: "Failed to create unit", error: error });
   }
 };
 

@@ -88,7 +88,14 @@ const createUnit = async (req, res) => {
     // Check if the unit already exists
     const existingUnit = await Unit.findOne({ $or: [{ name }, { uic }] });
     if (existingUnit) {
-      return res.status(500).json({ message: "Unit already exists" });
+      if (existingUnit.uic === uic)
+        return res
+          .status(500)
+          .json({ message: "Unit already exists with this UIC!" });
+      else
+        return res
+          .status(500)
+          .json({ message: "Unit already exists with this name!" });
     }
 
     const unit = new Unit({
@@ -106,8 +113,7 @@ const createUnit = async (req, res) => {
     await unit.save();
     const unitObject = unit.toObject();
 
-    const message = { message: "Unit created successfully" };
-    res.status(200).json({ unitObject, message });
+    res.status(200).json({ unitObject, message: "Unit created successfully" });
   } catch (error) {
     console.error("Failed to create unit:", error);
     res.status(500).json({ message: "Failed to create unit", error });

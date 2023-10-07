@@ -12,11 +12,9 @@ const UnitListing = ({ unit, setUnits }: { unit: Unit; setUnits: any }) => {
         "Content-Type": "application/json",
       },
     });
-
     if (response.ok) {
       const result = await response.json();
       setUnits(result.units);
-      console.log(result);
     } else {
       console.error("Failed to delete unit.");
     }

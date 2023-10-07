@@ -1,13 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Unit, UnitEchelon, UnitType, defaultUnitState } from "../types/types";
 import { API_BASE } from "../lib/helpers";
+import { ModalContext } from "../providers/ModalProvider";
+import SuccessModal from "./modals/SuccessModal";
+import { useNavigate } from "react-router";
+import ErrorModal from "./modals/ErrorModal";
 
 const UnitForm = ({ unitState = defaultUnitState }) => {
   const [unit, setUnit] = useState<Partial<Unit>>(unitState);
   const [unitsList, setUnitsList] = useState<Unit[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<null | string>(null);
-
+  const { showModal } = useContext(ModalContext);
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchUnits = async () => {
       try {
@@ -26,19 +31,23 @@ const UnitForm = ({ unitState = defaultUnitState }) => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    const method = unit.id ? "PATCH" : "POST";
     const response = await fetch(`${API_BASE}/units/${unit.id}`, {
-      method: "PATCH",
+      method,
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(unit),
     });
 
+    const result = await response.json();
     if (response.ok) {
-      const result = await response.json();
+      showModal(<SuccessModal message={result.message} />);
+      navigate("/");
       console.log(result);
     } else {
-      console.error("Failed to create unit.");
+      console.error("Failed to create unit.", result);
+      showModal(<ErrorModal message={result.message} />);
     }
   };
 

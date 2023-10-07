@@ -2,9 +2,16 @@ import { Unit } from "../types/types";
 import ms from "milsymbol";
 import { FaPencil, FaTrash } from "react-icons/fa6";
 import { API_BASE, formatDate } from "../lib/helpers";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { FaExpand } from "react-icons/fa";
+import { useContext } from "react";
+import { ModalContext } from "../providers/ModalProvider";
+import SuccessModal from "./modals/SuccessModal";
 
-const UnitListing = ({ unit, setUnits }: { unit: Unit; setUnits: any }) => {
+const UnitListing = ({ unit, setUnits }: { unit: Unit; setUnits?: any }) => {
+  const navigate = useNavigate();
+  const { showModal } = useContext(ModalContext);
+
   const handleDelete = async () => {
     const response = await fetch(`${API_BASE}/units/${unit.id}`, {
       method: "DELETE",
@@ -14,7 +21,11 @@ const UnitListing = ({ unit, setUnits }: { unit: Unit; setUnits: any }) => {
     });
     if (response.ok) {
       const result = await response.json();
-      setUnits(result.units);
+      if (setUnits) setUnits(result.units);
+      else {
+        showModal(<SuccessModal message={result.message} />);
+        navigate("/");
+      }
     } else {
       console.error("Failed to delete unit.");
     }
@@ -45,6 +56,11 @@ const UnitListing = ({ unit, setUnits }: { unit: Unit; setUnits: any }) => {
         </ul>
       </div>
       <div className="absolute top-4 right-4 flex gap-4">
+        {setUnits && (
+          <Link to={`/view/${unit.id} `}>
+            <FaExpand />
+          </Link>
+        )}
         <Link to={`/edit/${unit.id}`}>
           <FaPencil />
         </Link>

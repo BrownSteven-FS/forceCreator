@@ -18,10 +18,10 @@
   h2 {
     @apply font-bold text-xl py-4;
   }
-  a {
+  header a {
     @apply text-green-500 px-4;
   }
-  a:hover {
+  header a:hover {
     @apply text-green-700;
   }
   form {

@@ -2,6 +2,7 @@ import { Unit } from "../types/types";
 import ms from "milsymbol";
 import { FaPencil, FaTrash } from "react-icons/fa6";
 import { API_BASE } from "../lib/helpers";
+import { Link } from "react-router-dom";
 
 const UnitListing = ({ unit, setUnits }: { unit: Unit; setUnits: any }) => {
   const handleDelete = async () => {
@@ -44,7 +45,9 @@ const UnitListing = ({ unit, setUnits }: { unit: Unit; setUnits: any }) => {
         </ul>
       </div>
       <div className="absolute top-4 right-4 flex gap-4">
-        <FaPencil />
+        <Link to={`/edit/${unit.id}`}>
+          <FaPencil />
+        </Link>
         <button onClick={handleDelete}>
           <FaTrash />
         </button>

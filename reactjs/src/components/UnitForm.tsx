@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Unit, UnitEchelon, UnitType, defaultUnitState } from "../types/types";
 import { API_BASE } from "../lib/helpers";
 
-const UnitForm = () => {
-  const [unit, setUnit] = useState<Partial<Unit>>(defaultUnitState);
-
+const UnitForm = ({ unitState = defaultUnitState }) => {
+  const [unit, setUnit] = useState<Partial<Unit>>(unitState);
   const [unitsList, setUnitsList] = useState<Unit[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<null | string>(null);
@@ -27,9 +26,8 @@ const UnitForm = () => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    console.log(unit);
-    const response = await fetch(`${API_BASE}/units`, {
-      method: "POST",
+    const response = await fetch(`${API_BASE}/units/${unit.id}`, {
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },

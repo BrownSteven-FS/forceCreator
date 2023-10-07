@@ -9,6 +9,11 @@ const connectDB = async () => {
         // This is to prevent deprecation warnings
         useNewUrlParser: true,
         useUnifiedTopology: true,
+        writeConcern: {
+          w: "majority",
+          j: true,
+          wtimeout: 1000,
+        },
       }
     );
     console.log(`MongoDB connected on host: ${conn.connection.host}`);

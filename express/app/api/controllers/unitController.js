@@ -48,13 +48,15 @@ const updateUnit = async (req, res) => {
     });
     if (existingUnit) {
       if (existingUnit.uic === uic)
-        return res
-          .status(500)
-          .json({ message: "Unit already exists with this UIC!" });
+        return res.status(409).json({
+          message: "Unit already exists with this UIC!",
+          field: "uic",
+        });
       else
-        return res
-          .status(500)
-          .json({ message: "Unit already exists with this name!" });
+        return res.status(409).json({
+          message: "Unit already exists with this name!",
+          field: "name",
+        });
     }
 
     Object.assign(unit, {
@@ -89,13 +91,15 @@ const createUnit = async (req, res) => {
     const existingUnit = await Unit.findOne({ $or: [{ name }, { uic }] });
     if (existingUnit) {
       if (existingUnit.uic === uic)
-        return res
-          .status(500)
-          .json({ message: "Unit already exists with this UIC!" });
+        return res.status(409).json({
+          message: "Unit already exists with this UIC!",
+          field: "uic",
+        });
       else
-        return res
-          .status(500)
-          .json({ message: "Unit already exists with this name!" });
+        return res.status(409).json({
+          message: "Unit already exists with this name!",
+          field: "name",
+        });
     }
 
     const unit = new Unit({
@@ -127,7 +131,7 @@ const deleteUnit = async (req, res) => {
       // Check if the unit already exists
       const existingUnit = await Unit.findOne({ _id: id });
       if (!existingUnit) {
-        return res.status(500).json({ message: "Unit doesn't exists" });
+        return res.status(404).json({ message: "Unit doesn't exists" });
       }
 
       await Unit.deleteOne({ _id: id });

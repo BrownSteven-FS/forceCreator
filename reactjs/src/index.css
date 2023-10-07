@@ -9,14 +9,20 @@
   header {
     @apply w-full py-4 flex max-w-7xl mx-auto;
   }
+  nav {
+    @apply text-sm md:text-base pt-1;
+  }
   main {
-    @apply max-w-7xl mx-auto px-8;
+    @apply max-w-7xl mx-auto sm:px-8;
   }
   h1 {
-    @apply font-black uppercase px-8 text-2xl;
+    @apply font-black uppercase px-2 md:px-8 text-lg md:text-2xl;
   }
   h2 {
-    @apply font-bold text-xl py-4;
+    @apply font-bold text-xl py-4 px-4 md:px-0;
+  }
+  p {
+    @apply px-4;
   }
   header a {
     @apply text-green-500 px-4;
@@ -25,10 +31,10 @@
     @apply text-green-700;
   }
   section {
-    @apply bg-stone-800 py-8 px-12 rounded-sm shadow-md relative mb-8;
+    @apply bg-stone-800 py-4 md:py-8 px-4 md:px-12 rounded-sm shadow-md relative mb-8;
   }
   form {
-    @apply max-w-7xl mx-auto bg-stone-800 py-8 shadow-md px-12 rounded-sm;
+    @apply max-w-7xl mx-auto bg-stone-800 py-4 md:py-8 shadow-md px-4 md:px-12 rounded-sm;
   }
 
   input,
@@ -46,10 +52,10 @@
     @apply grid grid-cols-1 lg:grid-cols-2 justify-between gap-8 relative;
   }
   .listing {
-    @apply grid grid-cols-12 justify-center gap-8 mb-8 w-full bg-stone-800 py-8 px-12 rounded-sm shadow-md relative;
+    @apply grid grid-cols-1 md:grid-cols-12 justify-center gap-8 mb-8 w-full bg-stone-800 py-8 px-4 md:px-12 rounded-sm shadow-md relative;
   }
   .listing figure {
-    @apply flex flex-col w-full col-span-5;
+    @apply flex flex-col w-full md:col-span-5;
   }
   .listing figure img {
     @apply w-24 h-36 mx-auto;
@@ -58,10 +64,13 @@
     @apply font-bold text-center text-sm;
   }
   .listing div {
-    @apply col-span-7;
+    @apply md:col-span-7;
   }
   .listing div h3 {
     @apply font-black uppercase pb-2;
+  }
+  .listing div ul li {
+    @apply pr-6;
   }
   .listing a,
   .listing button {

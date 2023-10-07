@@ -35,7 +35,7 @@ const ViewUnitPage = () => {
   }, []);
 
   return (
-    <div className="mx-auto max-w-7xl">
+    <div className="mx-auto max-w-5xl xl:max-w-7xl">
       {isLoading && <LoadingComponent />}
       {unit && <UnitListing unit={unit} />}
       {error && !isLoading && <ErrorComponent message={error} />}

@@ -4,26 +4,21 @@ import { useContext } from "react";
 import ListContainer from "./components/ListContainer";
 import { styles } from "./AppStyles";
 import Heading from "./components/Heading";
-import CategoriesScreen from "./Categories";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import DetailsScreen from "./Details";
 import Providers from "./providers";
 import { UnitContext } from "./providers/UnitProvider";
 import ViewUnitScreen from "./screens/ViewUnitScreen";
 import CreateUnitScreen from "./screens/CreateUnitScreen";
 
 //  `https://brownstevenfs-force-creator-db0f08c506e7.herokuapp.com/api_v1/units`
+
 export function HomeScreen({ navigation }) {
-  const { units } = useContext(UnitContext);
+  const { units, setUnits } = useContext(UnitContext);
   return (
     <SafeAreaView style={styles.container}>
-      <Heading>Test</Heading>
-      <Button
-        title="Go to details"
-        onPress={() => navigation.navigate("Details")}
-      />
-      <ListContainer data={units} navigation={navigation} />
+      <Heading level="2">All Units</Heading>
+      <ListContainer data={units} setUnits={setUnits} navigation={navigation} />
       <StatusBar style="auto" />
     </SafeAreaView>
   );
@@ -31,7 +26,17 @@ export function HomeScreen({ navigation }) {
 
 const Stack = createNativeStackNavigator();
 
-export default function App({ navigation }) {
+export default function App() {
+  const createHeaderBtn = ({ navigation }) => ({
+    title: "Force Creator",
+    headerRight: () => (
+      <Button
+        onPress={() => navigation.navigate("Create Unit")}
+        title="Create Unit"
+        color="#007BFF"
+      />
+    ),
+  });
   return (
     <Providers>
       <NavigationContainer>
@@ -39,21 +44,14 @@ export default function App({ navigation }) {
           <Stack.Screen
             name="Home"
             component={HomeScreen}
-            options={({ navigation }) => ({
-              title: "Force Creator",
-              headerRight: () => (
-                <Button
-                  onPress={() => navigation.navigate("Create")}
-                  title="Create"
-                  color="#007BFF"
-                />
-              ),
-            })}
+            options={createHeaderBtn}
           />
-          <Stack.Screen name="View" component={ViewUnitScreen} />
-          <Stack.Screen name="Create" component={CreateUnitScreen} />
-          <Stack.Screen name="Details" component={DetailsScreen} />
-          <Stack.Screen name="Categories" component={CategoriesScreen} />
+          <Stack.Screen
+            name="View"
+            component={ViewUnitScreen}
+            options={createHeaderBtn}
+          />
+          <Stack.Screen name="Create Unit" component={CreateUnitScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Providers>

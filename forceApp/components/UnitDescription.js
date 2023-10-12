@@ -5,7 +5,7 @@ import Heading from "./Heading";
 export default function UnitDescription({ unit }) {
   return (
     <View>
-      <Heading level="3">{unit.name}</Heading>
+      <Heading level="4">{unit.name}</Heading>
       <View style={styles.details}>
         {unit.type && <Text>Unit Type: {unit.type}</Text>}
         {unit.parent && <Text>Unit Parent: {unit.parent}</Text>}

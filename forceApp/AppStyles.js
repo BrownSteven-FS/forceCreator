@@ -5,64 +5,54 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center",
-  },
-  largeHeading: {
-    fontSize: 80,
-    fontWeight: "800",
   },
   listContainer: {
-    height: 200,
-  },
-  listing: {
-    flexDirection: "row",
-    padding: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: "#ddd",
-  },
-  figure: {
-    marginRight: 16,
-  },
-  image: {
-    width: 36,
-    height: 36,
-    marginBottom: 8,
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
   caption: {
+    paddingVertical: 4,
     fontSize: 12,
+    fontStyle: "italic",
   },
-  header: {
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-  details: {
-    marginTop: 8,
+  figure: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
   actions: {
-    position: "absolute",
-    top: 16,
-    right: 16,
+    marginVertical: 16,
     flexDirection: "row",
     justifyContent: "space-between",
+    gap: 60,
   },
 
   h1: {
+    paddingVertical: 12,
     fontSize: 32,
     fontWeight: "bold",
   },
   h2: {
+    textAlign: "center",
+    paddingVertical: 12,
     fontSize: 28,
     fontWeight: "bold",
   },
   h3: {
+    textAlign: "center",
+    paddingVertical: 8,
     fontSize: 24,
     fontWeight: "bold",
   },
   h4: {
+    textAlign: "center",
+    paddingVertical: 8,
     fontSize: 20,
     fontWeight: "bold",
   },
   h5: {
+    paddingVertical: 6,
     fontSize: 16,
     fontWeight: "bold",
   },

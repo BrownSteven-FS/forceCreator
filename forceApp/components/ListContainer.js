@@ -1,5 +1,4 @@
-import { FlatList } from "react-native";
-import ListItem from "./ListItem";
+import { FlatList, View } from "react-native";
 import { styles } from "../AppStyles";
 import UnitSymbol from "./UnitSymbol";
 import UnitDescription from "./UnitDescription";
@@ -7,11 +6,11 @@ import UnitButtons from "./UnitButtons";
 
 export default function ListContainer({ data, navigation }) {
   const renderItem = ({ item }) => (
-    <ListItem>
+    <View style={styles.listContainer}>
       <UnitSymbol unit={item} />
       <UnitDescription unit={item} />
       <UnitButtons unit={item} navigation={navigation} />
-    </ListItem>
+    </View>
   );
 
   console.log(data);

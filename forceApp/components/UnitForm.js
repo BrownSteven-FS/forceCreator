@@ -1,14 +1,11 @@
-import {
-  ActivityIndicator,
-  ScrollView,
-  StyleSheet,
-  Button,
-} from "react-native";
+import { ActivityIndicator, ScrollView, Button } from "react-native";
 import { UnitContext } from "../providers/UnitProvider";
 import { useContext, useState } from "react";
 import Input from "./form/Input";
 import Select from "./form/Select";
 import { API_BASE, defaultUnitState } from "../lib/helpers";
+import { styles } from "../AppStyles";
+
 export default function UnitForm({
   isLoading,
   navigation,
@@ -49,7 +46,6 @@ export default function UnitForm({
 
     const result = await response.json();
     if (response.ok) {
-      console.log(result);
       if (unit.id) {
         alert("Unit edited successfully!");
         const index = units.findIndex((u) => u.id === unit.id);
@@ -60,10 +56,10 @@ export default function UnitForm({
         alert("Unit created successfully!");
         setUnits([...units, result.unitObject]);
       }
-
       navigation.popToTop();
     } else {
-      console.error("Failed to create unit.", result);
+      //console.error("Failed to create unit.", result);
+      alert(result.message);
     }
   };
 
@@ -72,7 +68,7 @@ export default function UnitForm({
       {isLoading ? (
         <ActivityIndicator size="large" color="#0000ff" />
       ) : (
-        <ScrollView style={styles.container}>
+        <ScrollView style={styles.form}>
           <Select
             field="type"
             options={unitTypeOptions}
@@ -128,9 +124,3 @@ export default function UnitForm({
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    marginBottom: 130,
-  },
-});

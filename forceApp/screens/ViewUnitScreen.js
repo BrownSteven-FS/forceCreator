@@ -6,9 +6,7 @@ import ListContainer from "../components/ListContainer";
 
 export default function ViewUnitScreen({ route, navigation }) {
   const { unitId } = route.params;
-
   const { units, setUnits } = useContext(UnitContext);
-
   const unit = units.find((u) => u.id == unitId);
 
   return (

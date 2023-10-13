@@ -1,11 +1,6 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-  },
   listContainer: {
     flex: 1,
     justifyContent: "center",
@@ -28,6 +23,20 @@ export const styles = StyleSheet.create({
     gap: 60,
   },
 
+  input: {
+    fontSize: 16,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: "gray",
+    borderRadius: 4,
+  },
+  inputContainer: {
+    padding: 10,
+  },
+  form: {
+    marginBottom: 130,
+  },
   h1: {
     paddingVertical: 12,
     fontSize: 32,

@@ -1,10 +1,11 @@
 import { StyleSheet, View } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 import Heading from "../Heading";
+import { styles } from "../../AppStyles";
 
 export default function Select({ field, options, selectedValue, setValue }) {
   return (
-    <View style={styles.container}>
+    <View style={styles.inputContainer}>
       <Heading>{field}</Heading>
       <RNPickerSelect
         value={selectedValue}
@@ -40,12 +41,6 @@ export default function Select({ field, options, selectedValue, setValue }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 10,
-  },
-});
 
 const pickerSelectStyles = StyleSheet.create({
   inputIOS: {

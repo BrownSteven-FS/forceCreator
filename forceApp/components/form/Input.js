@@ -1,10 +1,11 @@
-import { StyleSheet, TextInput, View } from "react-native";
+import { TextInput, View } from "react-native";
 import Heading from "../Heading";
+import { styles } from "../../AppStyles";
 
 export default function Input({ field, value, setValue, placeholder = "" }) {
   const label = field.replace("_", " ");
   return (
-    <View style={styles.container}>
+    <View style={styles.inputContainer}>
       <Heading>{label}</Heading>
       <TextInput
         value={value}
@@ -17,18 +18,3 @@ export default function Input({ field, value, setValue, placeholder = "" }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 10,
-  },
-  input: {
-    fontSize: 16,
-    paddingVertical: 12,
-    paddingHorizontal: 10,
-    borderWidth: 1,
-    borderColor: "gray",
-    borderRadius: 4,
-    color: "black",
-  },
-});

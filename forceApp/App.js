@@ -15,7 +15,7 @@ import EditUnitScreen from "./screens/EditUnitScreen";
 export function HomeScreen({ navigation }) {
   const { units, setUnits } = useContext(UnitContext);
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView>
       <Heading level="2">All Units</Heading>
       <ListContainer data={units} setUnits={setUnits} navigation={navigation} />
       <StatusBar style="auto" />

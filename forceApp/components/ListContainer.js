@@ -28,18 +28,23 @@ export default function ListContainer({ data, navigation }) {
     }
   };
 
-  const renderItem = ({ item }) =>
-    item && (
-      <View style={styles.listContainer}>
-        <UnitSymbol unit={item} />
-        <UnitDescription unit={item} />
-        <UnitButtons
-          unit={item}
-          navigation={navigation}
-          handleDelete={handleDelete}
-        />
-      </View>
+  const renderItem = ({ item }) => {
+    const showView = data.length !== 1;
+    return (
+      item && (
+        <View style={styles.listContainer}>
+          <UnitSymbol unit={item} />
+          <UnitDescription unit={item} />
+          <UnitButtons
+            unit={item}
+            navigation={navigation}
+            handleDelete={handleDelete}
+            showView={showView}
+          />
+        </View>
+      )
     );
+  };
 
   return (
     <FlatList

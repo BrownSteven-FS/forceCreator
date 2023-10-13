@@ -1,9 +1,12 @@
-import { Text, View } from "react-native";
+import { SafeAreaView } from "react-native";
+import UnitForm from "../components/UnitForm";
+import Heading from "../components/Heading";
 
-export default function CreateUnitScreen() {
+export default function CreateUnitScreen({ navigation }) {
   return (
-    <View>
-      <Text>Create</Text>
-    </View>
+    <SafeAreaView>
+      <Heading level={2}>Create New Unit</Heading>
+      <UnitForm navigation={navigation} />
+    </SafeAreaView>
   );
 }

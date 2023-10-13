@@ -1,4 +1,5 @@
 import { useState, useEffect, createContext } from "react";
+import { API_BASE } from "../lib/helpers";
 
 const defaultUnitContext = {
   units: [],
@@ -10,7 +11,6 @@ const defaultUnitContext = {
 export const UnitContext = createContext(defaultUnitContext);
 
 export const UnitProvider = ({ children }) => {
-  const API_BASE = "http://localhost:8000/api_v1";
   const [units, setUnits] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -43,8 +43,25 @@ export const UnitProvider = ({ children }) => {
     };
   }, []);
 
+  const deleteUnit = (unitId) => {
+    const index = units.findIndex((u) => u.id === unitId);
+    const updatedUnits = [...units];
+    updatedUnits.splice(index, 1);
+    setUnits(updatedUnits);
+    console.log(units);
+  };
+
+  const updateUnit = (unit) => {
+    const index = units.findIndex((u) => u.id === unit.id);
+    const updatedUnits = [...units];
+    updatedUnits.splice(index, 1);
+    setUnits(updatedUnits);
+  };
+
   return (
-    <UnitContext.Provider value={{ units, isLoading, error, setUnits }}>
+    <UnitContext.Provider
+      value={{ units, isLoading, error, setUnits, deleteUnit, updateUnit }}
+    >
       {children}
     </UnitContext.Provider>
   );

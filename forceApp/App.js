@@ -10,8 +10,7 @@ import Providers from "./providers";
 import { UnitContext } from "./providers/UnitProvider";
 import ViewUnitScreen from "./screens/ViewUnitScreen";
 import CreateUnitScreen from "./screens/CreateUnitScreen";
-
-//  `https://brownstevenfs-force-creator-db0f08c506e7.herokuapp.com/api_v1/units`
+import EditUnitScreen from "./screens/EditUnitScreen";
 
 export function HomeScreen({ navigation }) {
   const { units, setUnits } = useContext(UnitContext);
@@ -46,11 +45,8 @@ export default function App() {
             component={HomeScreen}
             options={createHeaderBtn}
           />
-          <Stack.Screen
-            name="View"
-            component={ViewUnitScreen}
-            options={createHeaderBtn}
-          />
+          <Stack.Screen name="View Unit" component={ViewUnitScreen} />
+          <Stack.Screen name="Edit Unit" component={EditUnitScreen} />
           <Stack.Screen name="Create Unit" component={CreateUnitScreen} />
         </Stack.Navigator>
       </NavigationContainer>

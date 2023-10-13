@@ -52,7 +52,8 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   h5: {
-    paddingVertical: 6,
+    textAlign: "center",
+    textTransform: "capitalize",
     fontSize: 16,
     fontWeight: "bold",
   },

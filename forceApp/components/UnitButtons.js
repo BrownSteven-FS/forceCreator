@@ -5,8 +5,7 @@ import { UnitContext } from "../providers/UnitProvider";
 
 export default function UnitButtons({ unit, navigation }) {
   const API_BASE = "http://localhost:8000/api_v1";
-  const { setUnits } = useContext(UnitContext);
-  console.log("test", unit);
+  const { deleteUnit } = useContext(UnitContext);
 
   const handleDelete = async () => {
     const unitId = unit.id;
@@ -19,24 +18,23 @@ export default function UnitButtons({ unit, navigation }) {
     if (response.ok) {
       alert("Unit successfully deleted.");
       const result = await response.json();
-      if (setUnits) setUnits(result.units);
+      deleteUnit(unitId);
+      if (navigation.canGoBack()) navigation.popToTop();
     } else {
       alert(response);
       console.error("Failed to delete unit.");
     }
   };
-
   return (
     <View style={styles.actions}>
-      {setUnits && (
-        <Button
-          title="View"
-          onPress={() => navigation.navigate("View", { unitId: unit.id })}
-        />
-      )}
+      <Button
+        title="View"
+        onPress={() => navigation.navigate("View Unit", { unitId: unit.id })}
+      />
+
       <Button
         title="Edit"
-        onPress={() => navigation.navigate("EditScreen", { unitId: unit.id })}
+        onPress={() => navigation.navigate("Edit Unit", { unitId: unit.id })}
       />
       <Button title="Delete" onPress={handleDelete} />
     </View>

@@ -3,31 +3,8 @@ import { styles } from "../AppStyles";
 import UnitSymbol from "./UnitSymbol";
 import UnitDescription from "./UnitDescription";
 import UnitButtons from "./UnitButtons";
-import { useContext } from "react";
-import { UnitContext } from "../providers/UnitProvider";
 
 export default function ListContainer({ data, navigation }) {
-  const { deleteUnit } = useContext(UnitContext);
-
-  const handleDelete = async () => {
-    const unitId = unit.id;
-    const response = await fetch(`${API_BASE}/units/${unitId}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    if (response.ok) {
-      alert("Unit successfully deleted.");
-      await response.json();
-      deleteUnit(unitId);
-      if (navigation.canGoBack()) navigation.pop();
-    } else {
-      alert(response);
-      console.error("Failed to delete unit.");
-    }
-  };
-
   const renderItem = ({ item }) => {
     const showView = data.length !== 1;
     return (
@@ -38,7 +15,6 @@ export default function ListContainer({ data, navigation }) {
           <UnitButtons
             unit={item}
             navigation={navigation}
-            handleDelete={handleDelete}
             showView={showView}
           />
         </View>

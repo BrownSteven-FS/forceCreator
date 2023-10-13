@@ -3,10 +3,19 @@ import RNPickerSelect from "react-native-picker-select";
 import Heading from "../Heading";
 import { styles } from "../../AppStyles";
 
-export default function Select({ field, options, selectedValue, setValue }) {
+export default function Select({
+  field,
+  options,
+  selectedValue,
+  setValue,
+  required,
+}) {
   return (
     <View style={styles.inputContainer}>
-      <Heading>{field}</Heading>
+      <Heading>
+        {field}
+        {`${required ? "*" : ""}`}
+      </Heading>
       <RNPickerSelect
         value={selectedValue}
         onValueChange={(newValue) =>

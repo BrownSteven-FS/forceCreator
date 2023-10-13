@@ -59,7 +59,11 @@ export default function UnitForm({
       navigation.popToTop();
     } else {
       //console.error("Failed to create unit.", result);
-      alert(result.message);
+      const message = result?.error?.message
+        ? result.error.message
+        : result.message;
+      alert(message);
+      console.log(result.error);
     }
   };
 
@@ -74,12 +78,14 @@ export default function UnitForm({
             options={unitTypeOptions}
             selectedValue={unit.type ? unit.type : unitTypeOptions[0].value}
             setValue={setUnit}
+            required={true}
             style={{ zIndex: 1000, elevation: 1000, position: "relative" }}
           />
           <Select
             field="parent"
             options={[...parentOptions, ...units]}
             selectedValue={unit.parent ? unit.parent : parentOptions[0].value}
+            required={true}
             setValue={setUnit}
           />
           <Select
@@ -92,6 +98,7 @@ export default function UnitForm({
             field="name"
             value={unit.name}
             setValue={setUnit}
+            required={true}
             placeholder="138th BumbleBee BDE"
           />
           <Input

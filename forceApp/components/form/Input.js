@@ -2,11 +2,20 @@ import { TextInput, View } from "react-native";
 import Heading from "../Heading";
 import { styles } from "../../AppStyles";
 
-export default function Input({ field, value, setValue, placeholder = "" }) {
+export default function Input({
+  field,
+  value,
+  setValue,
+  placeholder = "",
+  required,
+}) {
   const label = field.replace("_", " ");
   return (
     <View style={styles.inputContainer}>
-      <Heading>{label}</Heading>
+      <Heading>
+        {label}
+        {`${required ? "*" : ""}`}
+      </Heading>
       <TextInput
         value={value}
         onChangeText={(text) =>

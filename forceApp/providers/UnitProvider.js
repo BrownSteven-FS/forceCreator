@@ -25,7 +25,7 @@ export const UnitProvider = ({ children }) => {
             .then((res) => res.json())
             .then((data) => {
               if (data.units) setUnits(data.units);
-              console.log(data.units);
+
               if (data.error)
                 setError(data.error.message || "Unexpected Error");
               else setError(null);
@@ -48,7 +48,6 @@ export const UnitProvider = ({ children }) => {
     const updatedUnits = [...units];
     updatedUnits.splice(index, 1);
     setUnits(updatedUnits);
-    console.log(units);
   };
 
   const updateUnit = (unit) => {

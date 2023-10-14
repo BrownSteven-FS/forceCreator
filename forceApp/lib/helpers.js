@@ -1,5 +1,6 @@
-export const API_BASE = "http://localhost:8000/api_v1";
-
+//export const API_BASE = "http://localhost:8000/api_v1";
+export const API_BASE =
+  "https://brownstevenfs-force-creator-db0f08c506e7.herokuapp.com/api_v1";
 export const defaultUnitState = {
   id: "",
   type: "T",
@@ -12,4 +13,4 @@ export const defaultUnitState = {
   symbol: "",
 };
 
-//  `https://brownstevenfs-force-creator-db0f08c506e7.herokuapp.com/api_v1/units`
+//  `https://brownstevenfs-force-creator-db0f08c506e7.herokuapp.com/api_v1`

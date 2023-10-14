@@ -2,7 +2,6 @@ import { StatusBar } from "expo-status-bar";
 import { Button, SafeAreaView } from "react-native";
 import { useContext } from "react";
 import ListContainer from "./components/ListContainer";
-import { styles } from "./AppStyles";
 import Heading from "./components/Heading";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";

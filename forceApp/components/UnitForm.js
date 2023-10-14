@@ -63,7 +63,6 @@ export default function UnitForm({
         ? result.error.message
         : result.message;
       alert(message);
-      console.log(result.error);
     }
   };
 

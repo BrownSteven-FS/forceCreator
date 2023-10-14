@@ -9,7 +9,7 @@ export default function ListContainer({ data, navigation }) {
     const showView = data.length !== 1;
     return (
       item && (
-        <View style={styles.listContainer}>
+        <View style={styles.listItem}>
           <UnitSymbol unit={item} />
           <UnitDescription unit={item} />
           <UnitButtons
@@ -23,11 +23,13 @@ export default function ListContainer({ data, navigation }) {
   };
 
   return (
-    <FlatList
-      data={data}
-      renderItem={renderItem}
-      keyExtractor={(item) => (item?.id ? item.id : 0)}
-      style={styles.ListContainer}
-    />
+    <View style={{ paddingBottom: 140 }}>
+      <FlatList
+        data={data}
+        renderItem={renderItem}
+        keyExtractor={(item) => (item?.id ? item.id : 0)}
+        contentContainerStyle={styles.listContainer}
+      />
+    </View>
   );
 }

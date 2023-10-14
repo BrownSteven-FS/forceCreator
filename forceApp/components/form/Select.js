@@ -22,6 +22,7 @@ export default function Select({
           setValue((prev) => ({ ...prev, [field]: newValue }))
         }
         items={options}
+        useNativeAndroidPickerStyle={false}
         style={{
           ...pickerSelectStyles,
           iconContainer: {

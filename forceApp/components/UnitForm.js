@@ -30,7 +30,13 @@ export default function UnitForm({
     { label: "PLT", value: "PLT" },
   ];
 
-  const parentOptions = [{ label: "TOP", value: "TOP" }];
+  const parentOptions = [
+    { label: "TOP", value: "TOP" },
+    ...units.map((unit) => ({
+      label: unit.name,
+      value: unit.id,
+    })),
+  ];
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -82,9 +88,8 @@ export default function UnitForm({
           />
           <Select
             field="parent"
-            options={[...parentOptions, ...units]}
-            selectedValue={unit.parent ? unit.parent : parentOptions[0].value}
-            required={true}
+            options={[...parentOptions]}
+            selectedValue={unit.parent ? unit.parent : parentOptions[0]}
             setValue={setUnit}
           />
           <Select

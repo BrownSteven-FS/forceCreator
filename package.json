@@ -12,7 +12,8 @@
         "start": "npm start --prefix express",
         "dev:react": "concurrently --raw \"npm run api\"; concurrently \"npm run react\"; ",
         "react": "cd reactjs && npm run start",
-        "api": "cd express; nodemon server.js"
+        "api": "cd express; nodemon server.js",
+        "react-native": "cd forceApp; npm install; npm run ios"
     },
     "dependencies": {
         "concurrently": "^8.2.1"

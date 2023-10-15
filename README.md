@@ -18,6 +18,14 @@ The API is accessible from the application by appending /api_v1/units - [https:/
 
 To get started working with the code, you will need to update the .env.example files and remove the .example from the end of the filename. Besides that, it should be a pretty straightforward `npm install && npm run`. The package.json in the root directory can be used for ease of setup.
 
+## React Native
+
+To run a local version of the React Native Application, in the root directory, run:
+
+```js
+npm run react-native
+```
+
 ## Other Notes
 
 ### Why are there devDependencies as Dependencies?

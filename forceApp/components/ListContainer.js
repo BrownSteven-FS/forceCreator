@@ -23,7 +23,7 @@ export default function ListContainer({ data, navigation }) {
   };
 
   return (
-    <View style={{ paddingBottom: 140 }}>
+    <View style={{ paddingBottom: 140, backgroundColor: "#fff" }}>
       <FlatList
         data={data}
         renderItem={renderItem}

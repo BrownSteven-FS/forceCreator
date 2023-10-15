@@ -2,6 +2,7 @@ import { StyleSheet, View } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 import Heading from "../Heading";
 import { styles } from "../../AppStyles";
+import { Platform } from "react-native";
 
 export default function Select({
   field,
@@ -31,6 +32,9 @@ export default function Select({
           },
         }}
         Icon={() => {
+          if (Platform.OS === "web") {
+            return null;
+          }
           return (
             <View
               style={{

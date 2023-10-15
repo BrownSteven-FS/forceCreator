@@ -36,6 +36,7 @@ export const styles = StyleSheet.create({
   },
   form: {
     marginBottom: 130,
+    backgroundColor: "#fff",
   },
   h1: {
     paddingVertical: 12,
@@ -43,6 +44,7 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   h2: {
+    backgroundColor: "#fff",
     textAlign: "center",
     paddingVertical: 12,
     fontSize: 28,

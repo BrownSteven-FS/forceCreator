@@ -7,14 +7,16 @@ export default function UnitDescription({ unit }) {
     <View>
       <Heading level="4">{unit.name}</Heading>
       <View style={styles.details}>
-        {unit.type && <Text>Unit Type: {unit.type}</Text>}
-        {unit.parent && <Text>Unit Parent: {unit.parent}</Text>}
-        {unit.uic && <Text>Unit UIC: {unit.uic}</Text>}
-        {unit.echelon && <Text>Unit Echelon: {unit.echelon}</Text>}
-        {unit.unit_class && <Text>Unit Class: {unit.unit_class}</Text>}
-        {unit.template && <Text>Unit Template: {unit.template}</Text>}
-        {unit.createdAt && <Text>Created: {unit.createdAt}</Text>}
-        {unit.updatedAt && <Text>Updated: {unit.updatedAt}</Text>}
+        <Text>
+          {unit.type && `Unit Type: ${unit.type}\n`}
+          {unit.parent && `Unit Parent: ${unit.parent}\n`}
+          {unit.uic && `Unit UIC: ${unit.uic}\n`}
+          {unit.echelon && `Unit Echelon: ${unit.echelon}\n`}
+          {unit.unit_class && `Unit Class: ${unit.unit_class}\n`}
+          {unit.template && `Unit Template: ${unit.template}\n`}
+          {unit.createdAt && `Created: ${unit.createdAt}\n`}
+          {unit.updatedAt && `Updated: ${unit.updatedAt}`}
+        </Text>
       </View>
     </View>
   );

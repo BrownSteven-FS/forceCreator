@@ -36,7 +36,7 @@ export const AuthContext = createContext(defaultAuthContext);
 export const AuthProvider: React.FC<UserProviderProps> = ({ children }) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
 
-  const API_URL = `http://localhost:8000/api_v1/auth`;
+  const API_URL = `${API_BASE}/auth`;
 
   const register = async (email: string, password: string) => {
     try {

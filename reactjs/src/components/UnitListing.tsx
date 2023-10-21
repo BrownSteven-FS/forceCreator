@@ -7,27 +7,34 @@ import { FaExpand } from "react-icons/fa";
 import { useContext } from "react";
 import { ModalContext } from "../providers/ModalProvider";
 import SuccessModal from "./modals/SuccessModal";
+import { AuthContext } from "../providers/AuthProvider";
 
 const UnitListing = ({ unit, setUnits }: { unit: Unit; setUnits?: any }) => {
   const navigate = useNavigate();
   const { showModal } = useContext(ModalContext);
-
+  const { authHeader } = useContext(AuthContext);
   const handleDelete = async () => {
-    const response = await fetch(`${API_BASE}/units/${unit.id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    if (response.ok) {
-      const result = await response.json();
-      if (setUnits) setUnits(result.units);
-      else {
-        showModal(<SuccessModal message={result.message} />);
-        navigate("/");
+    try {
+      const headers = await authHeader();
+      const response = await fetch(`${API_BASE}/units/${unit.id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          ...headers,
+        },
+      });
+      if (response.ok) {
+        const result = await response.json();
+        if (setUnits) setUnits(result.units);
+        else {
+          showModal(<SuccessModal message={result.message} />);
+          navigate("/");
+        }
+      } else {
+        console.error("Failed to delete unit.");
       }
-    } else {
-      console.error("Failed to delete unit.");
+    } catch (error: any) {
+      console.error(error);
     }
   };
 
@@ -55,7 +62,7 @@ const UnitListing = ({ unit, setUnits }: { unit: Unit; setUnits?: any }) => {
           {unit.updatedAt && <li>Updated: {formatDate(unit.updatedAt)}</li>}
         </ul>
       </div>
-      <div className="absolute top-4 right-4 flex gap-4">
+      <div className="absolute flex gap-4 top-4 right-4">
         {setUnits && (
           <Link to={`/view/${unit.id} `}>
             <FaExpand />

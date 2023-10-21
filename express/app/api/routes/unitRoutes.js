@@ -1,4 +1,5 @@
 const express = require("express");
+const authenticateJWT = require("../../middleware/authenticateJWT");
 const {
   getUnits,
   createUnit,
@@ -9,14 +10,14 @@ const {
 
 const unitRouter = express.Router();
 
-unitRouter.get("/", getUnits);
+unitRouter.get("/", authenticateJWT, getUnits);
 
-unitRouter.post("/", createUnit);
+unitRouter.post("/", authenticateJWT, createUnit);
 
-unitRouter.get("/:id", getUnit);
+unitRouter.get("/:id", authenticateJWT, getUnit);
 
-unitRouter.patch("/:id", updateUnit);
+unitRouter.patch("/:id", authenticateJWT, updateUnit);
 
-unitRouter.delete("/:id", deleteUnit);
+unitRouter.delete("/:id", authenticateJWT, deleteUnit);
 
 module.exports = unitRouter;

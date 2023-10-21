@@ -38,3 +38,8 @@ export const defaultUnitState: Partial<Unit> = {
   template: "",
   symbol: "",
 };
+
+export interface User {
+  token: string;
+  userId: string;
+}

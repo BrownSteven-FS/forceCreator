@@ -10,6 +10,8 @@ import { UnitContext } from "./providers/UnitProvider";
 import ViewUnitScreen from "./screens/ViewUnitScreen";
 import CreateUnitScreen from "./screens/CreateUnitScreen";
 import EditUnitScreen from "./screens/EditUnitScreen";
+import RegisterScreen from "./screens/RegisterScreen";
+import LoginScreen from "./screens/LoginScreen";
 
 export function HomeScreen({ navigation }) {
   const { units, setUnits } = useContext(UnitContext);
@@ -47,6 +49,8 @@ export default function App() {
           <Stack.Screen name="View Unit" component={ViewUnitScreen} />
           <Stack.Screen name="Edit Unit" component={EditUnitScreen} />
           <Stack.Screen name="Create Unit" component={CreateUnitScreen} />
+          <Stack.Screen name="Register" component={RegisterScreen} />
+          <Stack.Screen name="Login" component={LoginScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Providers>

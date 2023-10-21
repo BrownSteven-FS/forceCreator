@@ -6,18 +6,21 @@ import SuccessModal from "./modals/SuccessModal";
 import { useNavigate } from "react-router";
 import ErrorModal from "./modals/ErrorModal";
 import LoadingComponent from "./Loading";
+import { AuthContext } from "../providers/AuthProvider";
 
 const UnitForm = ({ unitState = defaultUnitState }) => {
   const [unit, setUnit] = useState<Partial<Unit>>(unitState);
   const [unitsList, setUnitsList] = useState<Unit[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<null | string>(null);
+  const { authHeader } = useContext(AuthContext);
   const { showModal } = useContext(ModalContext);
   const navigate = useNavigate();
   useEffect(() => {
     const fetchUnits = async () => {
       try {
-        const response = await fetch(`${API_BASE}/units`);
+        const headers = await authHeader();
+        const response = await fetch(`${API_BASE}/units`, { headers });
         const data = await response.json();
         setUnitsList(data.units);
       } catch (err) {
@@ -32,25 +35,33 @@ const UnitForm = ({ unitState = defaultUnitState }) => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    setIsLoading(true);
-    const method = unit.id ? "PATCH" : "POST";
-    const response = await fetch(`${API_BASE}/units/${unit.id}`, {
-      method,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(unit),
-    });
+    try {
+      setIsLoading(true);
+      const headers = await authHeader();
+      const method = unit.id ? "PATCH" : "POST";
+      const response = await fetch(`${API_BASE}/units/${unit.id}`, {
+        method,
+        headers: {
+          "Content-Type": "application/json",
+          ...headers,
+        },
+        body: JSON.stringify(unit),
+      });
 
-    const result = await response.json();
-    if (response.ok) {
-      showModal(<SuccessModal message={result.message} />);
-      navigate("/");
-    } else {
-      console.error("Failed to create unit.", result);
-      showModal(<ErrorModal message={result.message} />);
+      const result = await response.json();
+      if (response.ok) {
+        showModal(<SuccessModal message={result.message} />);
+        navigate("/");
+      } else {
+        console.error("Failed to create unit.", result);
+        showModal(<ErrorModal message={result.message} />);
+      }
+    } catch (error: any) {
+      console.error("Failed to create unit.", error);
+      showModal(<ErrorModal message={error.message} />);
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   return (
@@ -197,7 +208,7 @@ const UnitForm = ({ unitState = defaultUnitState }) => {
               />
             </div>
           </div>
-          <p className="text-red-600 italic text-sm py-2">
+          <p className="py-2 text-sm italic text-red-600">
             * denotes a required field
           </p>
           <button type="submit">{unit.id ? "Update" : "Create"} Unit</button>

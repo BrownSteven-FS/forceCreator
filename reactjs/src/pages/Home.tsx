@@ -1,24 +1,26 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Unit } from "../types/types";
 import UnitListing from "../components/UnitListing";
 import { API_BASE } from "../lib/helpers";
 import LoadingComponent from "../components/Loading";
 import ErrorComponent from "../components/Error";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../providers/AuthProvider";
 
 const HomePage = () => {
   const [units, setUnits] = useState<Unit[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const { authHeader } = useContext(AuthContext);
   let ignore = false;
-
   useEffect(() => {
     if (!ignore) {
       const getUnits = async () => {
         setIsLoading(true);
         try {
-          await fetch(`${API_BASE}/units`)
+          const headers = await authHeader();
+          await fetch(`${API_BASE}/units`, { headers })
             .then((res) => res.json())
             .then((data) => {
               if (data.units) setUnits(data.units);

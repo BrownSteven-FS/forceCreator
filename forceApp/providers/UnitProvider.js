@@ -1,7 +1,7 @@
 import { useState, useEffect, createContext } from "react";
 import { API_BASE } from "../lib/helpers";
 
-const defaultUnitContext = {
+export const defaultUnitContext = {
   units: [],
   isLoading: true,
   error: null,

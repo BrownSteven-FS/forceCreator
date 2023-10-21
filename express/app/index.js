@@ -3,10 +3,14 @@ const app = express();
 const path = require("path");
 const middleware = require("./middleware");
 const unitRouter = require("./api/routes/unitRoutes");
+const authRouter = require("./api/routes/authRoutes");
+
+require("./api/services/passport");
 
 middleware(app);
 
 app.use("/api_v1/units", unitRouter);
+app.use("/api_v1/auth", authRouter);
 
 // Add our react build
 app.use(express.static(path.join(__dirname, "../../reactjs/dist")));

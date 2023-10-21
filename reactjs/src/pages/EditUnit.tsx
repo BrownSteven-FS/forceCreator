@@ -7,6 +7,7 @@ import LoadingComponent from "../components/Loading";
 import { ModalContext } from "../providers/ModalProvider";
 import ErrorModal from "../components/modals/ErrorModal";
 import ErrorComponent from "../components/Error";
+import { AuthContext } from "../providers/AuthProvider";
 
 const EditUnitPage = () => {
   const { id } = useParams();
@@ -14,12 +15,14 @@ const EditUnitPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<null | string>(null);
   const { showModal } = useContext(ModalContext);
+  const { authHeader } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchUnits = async () => {
       try {
         setIsLoading(true);
-        const response = await fetch(`${API_BASE}/units/${id}`);
+        const headers = await authHeader();
+        const response = await fetch(`${API_BASE}/units/${id}`, { headers });
         const data = await response.json();
         setUnit(data.unit);
         setError(null);
